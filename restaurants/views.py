@@ -46,6 +46,10 @@ def signout(request):
     return redirect("signin")
 
 def restaurant_list(request):
+    restaurant = Restaurant.objects.all()
+    query = request.GET.get("q")
+    if query:
+        restaurant = restaurant.filter(name__contains=query)
     context = {
         "restaurants":Restaurant.objects.all()
     }

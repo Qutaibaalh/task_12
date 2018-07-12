@@ -4,6 +4,9 @@
 
 {% block content %}
 <br>
+<form action="{% url 'restaurant-list' %}" method="GET">
+    <input type="text" name='q' placeholder="Search here..." value="{{request.GET.q}}"> 
+    <input type="submit" value="Search">
 <div class="row">
     {% for restaurant in restaurants %}
     <div class="col-md-4">
@@ -11,6 +14,8 @@
           {% if restaurant.logo %}
             <img class="card-img-top" src="{{restaurant.logo.url}}" alt="Hey Noob, look at me...">
           {% endif %}
+
+  </form>
           <div class="card-body">
             <h5 class="card-title">{{restaurant.name}}</h5>
             <p class="card-text">{{restaurant.description|truncatechars:25}}</p>
